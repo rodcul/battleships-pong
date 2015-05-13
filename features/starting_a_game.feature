@@ -15,3 +15,10 @@ Feature: Starting the game
     Then I should be on the Game page
     And I should see "Alex"
     And I should see "ABCDEFGHIJ"
+
+  Scenario: User does not provide their name
+    Given I am on the New Game page
+    And I fill in "name" with ""
+    When I press "send name"
+    Then I should be on the New Game page
+    And I should see "Please put in a valid name"
