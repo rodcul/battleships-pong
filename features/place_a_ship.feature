@@ -26,5 +26,4 @@ Feature: Place a ship
     And I fill in "coordinate" with "E4"
     And I check "vertically" within "orientation"
     When I press "place ship"
-    Then I should see "Ship already here"
-
+    Then I should see "Error: ship overlay or outside board"
