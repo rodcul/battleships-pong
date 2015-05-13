@@ -1,6 +1,9 @@
 <h1> Place a ship </h1>
 
-<form action='/game' method="post">
+<form action='/game/place-ship' method="post">
   <input text='text' name='coordinate'>
-  <input type="submit" text="place a ship">
+  <input type="submit" value="place ship">
 </form>
+
+
+<pre><%= @board %></pre>

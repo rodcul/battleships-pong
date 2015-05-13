@@ -23,8 +23,6 @@ class BattleshipsWeb < Sinatra::Base
   post '/game' do
     @board = @@game.own_board_view @@game.player_1
     @name = params[:name]
-    @coordinate = params[:coordinate]
-    @@game.player_1.place_ship Ship.battleship, @coordinate, :vertically
 
     if @name.empty?
       redirect '/game/new?error=name'
@@ -34,9 +32,17 @@ class BattleshipsWeb < Sinatra::Base
     # erb :place_ship
   end
 
-  get '/game/ship' do
+  get '/game/place-ship' do
     erb :place_ship
   end
+
+  post '/game/place-ship' do
+    @coordinate = params[:coordinate].capitalize.to_s
+    @@game.player_1.place_ship Ship.cruiser, @coordinate
+    @board = @@game.own_board_view @@game.player_1
+    erb :place_ship
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
