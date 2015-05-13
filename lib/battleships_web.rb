@@ -64,7 +64,10 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   post '/game/fire' do
-
+    @coordinate = params[:coordinate].capitalize.to_sym
+    @@game.player_2.shoot @coordinate
+    @board = @@game.own_board_view @@game.player_1
+    erb :fire_at_ship
   end
 
   # start the server if ruby file executed directly
