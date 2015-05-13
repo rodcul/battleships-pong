@@ -7,3 +7,9 @@ Feature: Fire at a board
     Given I am on place ship page
     When I follow "Shoot ships"
     Then I should see "Enter a coordinate to fire at"
+
+  Scenario: Fire a shot that misses
+    Given I am on the fire page
+    And I fill in "coordinate" with "A4"
+    When I press "take shot"
+    Then I should see "-"

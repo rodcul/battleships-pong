@@ -59,6 +59,14 @@ class BattleshipsWeb < Sinatra::Base
     erb :place_ship
   end
 
+  get '/game/fire' do
+    erb :fire_at_ship
+  end
+
+  post '/game/fire' do
+
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $PROGRAM_NAME
 end

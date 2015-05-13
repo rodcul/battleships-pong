@@ -22,6 +22,9 @@ module NavigationHelpers
     when /place ship page/
       '/game/place-ship'
 
+    when /the fire page/
+      '/game/fire'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
