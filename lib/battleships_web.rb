@@ -22,14 +22,20 @@ class BattleshipsWeb < Sinatra::Base
 
   post '/game' do
     @board = @@game.own_board_view @@game.player_1
-
     @name = params[:name]
+    @coordinate = params[:coordinate]
+    @@game.player_1.place_ship Ship.battleship, @coordinate, :vertically
 
     if @name.empty?
       redirect '/game/new?error=name'
     else
       erb :game
     end
+    # erb :place_ship
+  end
+
+  get '/game/ship' do
+    erb :place_ship
   end
   # start the server if ruby file executed directly
   run! if app_file == $0
