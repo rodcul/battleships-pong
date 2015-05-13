@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'battleships'
+require 'byebug'
 
 class BattleshipsWeb < Sinatra::Base
   @@game = Game.new Player, Board
@@ -29,7 +30,6 @@ class BattleshipsWeb < Sinatra::Base
     else
       erb :game
     end
-    # erb :place_ship
   end
 
   get '/game/place-ship' do
@@ -38,7 +38,8 @@ class BattleshipsWeb < Sinatra::Base
 
   post '/game/place-ship' do
     @coordinate = params[:coordinate].capitalize.to_s
-    @@game.player_1.place_ship Ship.cruiser, @coordinate
+    @orientation = params[:orientation].to_sym ||= :horizontally
+    @@game.player_1.place_ship Ship.cruiser, @coordinate, @orientation
     @board = @@game.own_board_view @@game.player_1
     erb :place_ship
   end

@@ -6,12 +6,25 @@ Feature: Place a ship
   Scenario: User places a ship within board (horizontal)
     Given I am on place ship page
     And I fill in "coordinate" with "A1"
+    And I check "horizontally" within "orientation"
     When I press "place ship"
     Then I should see "CCC"
 
+  @ignore
   Scenario: User places a ship within board (vertical)
     Given I am on place ship page
-    And I fill in "coordinate" with "A1"
-    And I fill in "orientation" with "vertical" 
+    And I fill in "coordinate" with "E4"
+    And I check "vertically" within "orientation"
     When I press "place ship"
-    Then I should see "CCC"
+    Then coordinate "E4" should be cruiser
+    And coordinate "E5" should be cruiser
+    And coordinate "E6" should be cruiser
+
+  @ignore
+  Scenario: User places a ship on top of another
+    Given I am on place ship page
+    And I fill in "coordinate" with "E4"
+    And I check "vertically" within "orientation"
+    When I press "place ship"
+    Then I should see "Ship already here"
+
