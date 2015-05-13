@@ -22,6 +22,7 @@ class BattleshipsWeb < Sinatra::Base
 
   post '/game' do
     @board = @@game.own_board_view @@game.player_1
+
     @name = params[:name]
 
     if @name.empty?
