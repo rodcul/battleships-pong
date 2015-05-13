@@ -108,7 +108,6 @@ end
 
 Then /^(?:|I )should see "([^\"]*)"(?: within "([^\"]*)")?$/ do |text, selector|
   with_scope(selector) do
-    puts current_path
     if page.respond_to? :should
       page.should have_content(text)
     else

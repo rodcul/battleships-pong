@@ -10,7 +10,7 @@ Feature: Starting the game
 
   Scenario: Register your name
     Given I am on the New Game page
-    When I fill in "name" with "Rodney"
-    And I press "send name"
-    Then I am on the Game page
-    Then I should see "Rodney"
+    And I fill in "name" with "Alex"
+    When I press "send name"
+    Then I should be on the Game page
+    And I should see "Alex"
