@@ -1,16 +1,30 @@
 require 'sinatra/base'
 require 'battleships'
-require 'byebug'
 
 class BattleshipsWeb < Sinatra::Base
   @@game = Game.new Player, Board
   set :views, proc { File.join(root, '..', 'views') }
-  set :raise_errors, false
-  set :show_exceptions, false
+  # set :raise_errors, false
+  # set :show_exceptions, false
+
+  enable :sessions
+  set :session_secret, 'bonkers'
 
   get '/' do
     erb :index
   end
+
+
+get '/player1' do
+  session['player'] = "player_1"
+  redirect '/game/new'
+end
+
+
+get '/player2' do
+  session['player'] = "player_2"
+  redirect '/game/new'
+end
 
   get '/game/new' do
     @error = params[:error]
@@ -24,7 +38,8 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   post '/game' do
-    @board = @@game.own_board_view @@game.player_1
+    @player = session['player']
+    @board = @@game.own_board_view @@game.send(@player)
     @name = params[:name]
 
     if @name.empty?
@@ -36,12 +51,14 @@ class BattleshipsWeb < Sinatra::Base
 
   get '/game/place-ship' do
     @error = params[:error]
+    @player = session['player']
     if @error.nil?
       @message = "Place your ship"
     else
       @message = 'Error: ship overlay or outside board (try again)'
     end
-    @board = @@game.own_board_view @@game.player_1
+
+    @board = @@game.own_board_view @@game.send(@player)
     erb :place_ship
   end
 
@@ -50,12 +67,12 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   post '/game/place-ship' do
+    @player = session['player']
     @coordinate = params[:coordinate].capitalize.to_s
     @orientation = params[:orientation].to_sym
-    @@game.player_1.place_ship Ship.cruiser, @coordinate, @orientation
-
+    @@game.send(@player).place_ship Ship.cruiser, @coordinate, @orientation
     @message = "Place your ship"
-    @board = @@game.own_board_view @@game.player_1
+    @board = @@game.own_board_view @@game.send(@player)
     erb :place_ship
   end
 
@@ -64,6 +81,7 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   post '/game/fire' do
+
     @coordinate = params[:coordinate].capitalize.to_sym
     @@game.player_2.shoot @coordinate
     @board = @@game.own_board_view @@game.player_1
