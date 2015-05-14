@@ -25,6 +25,16 @@ module NavigationHelpers
     when /the fire page/
       '/game/fire'
 
+    when /the fire error page/
+      '/game/fire?error=wait'
+
+    when /Player 1/
+      '/player1'
+
+    when /Player 2/
+      '/player2'
+
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

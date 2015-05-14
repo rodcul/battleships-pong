@@ -1,11 +1,15 @@
-<h1> <%= @message %> </h1>
-<h1> <%= @player %> </h1>
+<%= @message %>
+<h3> <%= @player %> </h3>
 
-<form action='/game/place-ship' method="post">
-  <input text='text' name='coordinate'>
+
+<form action='/game/place-ship' method="post" class="form-horizontal">
+  <div class="form-group">
+  <input text='text' name='coordinate' class="form-control">
+
   <input type='radio' name='orientation' value="horizontally" id = "horizontally" checked> Horizontally
   <input type='radio' name='orientation' value="vertically" id = "vertically">Vertically
-  <input type="submit" value="place ship">
+  <button type="submit" value="place ship" class="btn btn-default">Submit</button>
+</div>
 </form>
 
 <pre><%= @own_board %></pre>

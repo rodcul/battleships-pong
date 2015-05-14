@@ -1,8 +1,23 @@
-<h1> Enter a coordinate to fire at </h1>
-<form action='/game/fire' method='post'>
-  <input text="text" name="coordinate">
-  <input type="submit" value="take shot">
+<h1> <%= @player  %></h1>
+<%= @message %>
+<form action='/game/fire' method='post' class="form-horizontal">
+  <div class="form-group">
+    <input text="text" name="coordinate" class="form-control">
+  </div>
+  <div class="form-group">
+    <button type="submit"  class="btn btn-danger">Fire!</button>
+  </div>
+  </div>
 </form>
 
-<pre><%= @own_board %></pre>
-<pre><%= @opponent_board %></pre>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2>Me</h2>
+    <pre><%= @own_board %></pre>
+  </div>
+  <div class="col-md-6">
+    <h2>Enemy</h2>
+    <pre><%= @opponent_board %></pre>
+  </div>
+</div>

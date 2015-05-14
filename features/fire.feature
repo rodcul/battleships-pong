@@ -13,3 +13,10 @@ Feature: Fire at a board
     And I fill in "coordinate" with "A4"
     When I press "take shot"
     Then I should see "-"
+
+  Scenario: Error: Fire when it's not your turn
+    Given I am on "Player 2"
+    And I go to the fire page
+    And I fill in "coordinate" with "A4"
+    When I press "take shot"
+    Then I should be on 'the fire error page'
