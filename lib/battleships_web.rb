@@ -72,20 +72,33 @@ end
     @orientation = params[:orientation].to_sym
     @@game.send(@player).place_ship Ship.cruiser, @coordinate, @orientation
     @message = "Place your ship"
-    @board = @@game.own_board_view @@game.send(@player)
+    @own_board = @@game.own_board_view @@game.send(@player)
     erb :place_ship
   end
 
   get '/game/fire' do
+    @player = session['player']
+    @own_board = @@game.own_board_view @@game.send(@player)
+    @opponent_board = @@game.opponent_board_view @@game.send(@player)
     erb :fire_at_ship
   end
 
   post '/game/fire' do
+    if @@game.has_winner?
+      redirect to '/game/winner'
+    else
+      @player = session['player']
+      @coordinate = params[:coordinate].capitalize.to_sym
+      @@game.send(@player).shoot @coordinate
+      @own_board = @@game.own_board_view @@game.send(@player)
+      @opponent_board = @@game.opponent_board_view @@game.send(@player)
+      erb :fire_at_ship
+    end
+  end
 
-    @coordinate = params[:coordinate].capitalize.to_sym
-    @@game.player_2.shoot @coordinate
-    @board = @@game.own_board_view @@game.player_1
-    erb :fire_at_ship
+  get '/game/winner' do
+    @player = session['player']
+    erb :you_win
   end
 
   # start the server if ruby file executed directly
