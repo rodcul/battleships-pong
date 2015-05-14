@@ -51,7 +51,7 @@ class BattleshipsWeb < Sinatra::Base
 
   post '/game/place-ship' do
     @coordinate = params[:coordinate].capitalize.to_s
-    @orientation = params[:orientation].to_sym ||= :horizontally
+    @orientation = params[:orientation].to_sym
     @@game.player_1.place_ship Ship.cruiser, @coordinate, @orientation
 
     @message = "Place your ship"
