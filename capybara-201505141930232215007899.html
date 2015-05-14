@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A Sinatra app to access Google+</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="RubyLearning.org" />
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/jumbotron-narrow.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+    <div class="jumbotron">
+
+      <div class="form-signin">
+        <div><a href="/"><img src = "/assets/img/battleship.png"></a></div>
+        <h1> player_1</h1>
+<form action='/game/fire' method='post' class="form-horizontal">
+  <div class="form-group">
+    <input text="text" name="coordinate" class="form-control">
+  </div>
+  <div class="form-group">
+    <button type="submit"  class="btn btn-danger">Fire!</button>
+  </div>
+  </div>
+</form>
+
+
+<div class="row">
+  <div class="col-md-6">
+    <h2>Me</h2>
+    <pre>   ABCDEFGHIJ
+  ------------
+ 1|          |1
+ 2|          |2
+ 3|          |3
+ 4|          |4
+ 5|          |5
+ 6|          |6
+ 7|          |7
+ 8|          |8
+ 9|          |9
+10|          |10
+  ------------
+   ABCDEFGHIJ
+</pre>
+  </div>
+  <div class="col-md-6">
+    <h2>Enemy</h2>
+    <pre>   ABCDEFGHIJ
+  ------------
+ 1|          |1
+ 2|          |2
+ 3|          |3
+ 4|-         |4
+ 5|          |5
+ 6|          |6
+ 7|          |7
+ 8|          |8
+ 9|          |9
+10|          |10
+  ------------
+   ABCDEFGHIJ
+</pre>
+  </div>
+</div>
+
+      </div>
+
+    </div>
+  </div>
+
+  </body>
+</html>

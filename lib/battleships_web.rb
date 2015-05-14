@@ -38,7 +38,7 @@ class BattleshipsWeb < Sinatra::Base
     if @error.nil?
       @message = 'Place your ship'
     else
-      @message = 'Error: ship overlay or outside board (try again)'
+      @message = '<div class="alert alert-danger" role="alert">Error: ship overlay or outside board (try again)</div>'
     end
 
     @own_board = @@game.own_board_view @@game.send(@player)
