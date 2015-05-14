@@ -3,6 +3,7 @@ require 'battleships'
 
 class BattleshipsWeb < Sinatra::Base
   @@game = Game.new Player, Board
+  @@turn = 'player_1'
   set :views, proc { File.join(root, '..', 'views') }
   # set :raise_errors, false
   # set :show_exceptions, false
@@ -84,10 +85,13 @@ end
   end
 
   post '/game/fire' do
+    @player = session['player']
+
     if @@game.has_winner?
       redirect to '/game/winner'
+    elsif @@turn != @player
+      redirect to '/game/fire?error=wait'
     else
-      @player = session['player']
       @coordinate = params[:coordinate].capitalize.to_sym
       @@game.send(@player).shoot @coordinate
       @own_board = @@game.own_board_view @@game.send(@player)
