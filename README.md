@@ -1,5 +1,7 @@
 # Battleships Web
 
+http://battleships-rodcul.herokuapp.com/
+
 My attempt at the Battleships Web game as part of [Makers Academy](http://www.makersacademy.com/) course using [Battleship cucumber](https://github.com/makersacademy/course/blob/master/battle_ships_web/battle_ships_web_cucumber.md) walkthrough (private repo)
 
 - [x] Version 0: Setting up
