@@ -10,12 +10,10 @@ My attempt at the Battleships Web game as part of [Makers Academy](http://www.ma
   - [x] Shooting at each others boards in turns
   - [x] Winning & losing
   - [ ] Allow placing different ship types
-  - [ ] Restrict number of each type of ship user is able to place
+  - [ ] Fire again on hit (maintain turn)
   - [ ] Error handling on fire page
   - [ ] Improve rendering of grid
-  - [ ] Allow user to click on grid to select place/fire
-  - [ ] Fire again on hit (maintain turn)
-  - [ ]
+  - [ ] Restrict number of each type of ship user is able to place
 - [ ] Version 3: Multigame battleships
 - [ ] Version 0: Final touches
 
